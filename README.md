@@ -5,6 +5,10 @@ Sometimes you need to have fake credit cards handy when doing ecommerce testing.
 
 See [here] [1] for more info on the Luhn algorithm. Find Wikipedia's article on bank card numbers [here][2].
 
+Screenshot
+----
+
+![alt tag](blob/master/out/artifacts/Fake_Credit_Card_Generator_jar/screenshot.png)
 
 Changelog
 ----
