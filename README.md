@@ -9,6 +9,14 @@ See [here] [1] for more info on the Luhn algorithm. Find Wikipedia's article on 
 Changelog
 ----
 
+0.04
+
+  - Added UI
+
+0.03
+
+  - Added Unit Tests
+
 0.02
 
   - Added support for generating of Visa, Discover, MasterCard, and American Express cards
@@ -16,9 +24,9 @@ Changelog
 Todo
 ----
 
-  * Add unit tests :)
   * Add more cards
-  * Add UI (JavaFX)
+  * Add unit tests [Done]
+  * Add UI [Done]
 
 License 
 ----
