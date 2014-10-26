@@ -8,7 +8,7 @@ See [here] [1] for more info on the Luhn algorithm. Find Wikipedia's article on 
 Screenshot
 ----
 
-![alt tag](blob/master/out/artifacts/Fake_Credit_Card_Generator_jar/screenshot.png)
+![alt tag](out/artifacts/Fake_Credit_Card_Generator_jar/screenshot.png)
 
 Changelog
 ----
