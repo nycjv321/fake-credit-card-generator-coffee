@@ -6,12 +6,10 @@ import org.apache.commons.lang.RandomStringUtils;
 /**
  * Created by Javier on 10/8/2014.
  */
-public final class FakeCreditCardGenerator implements CreditCard {
-    private CreditCardPrefix creditCardPrefix = new CreditCardPrefix();
+public final class FakeCreditCardGenerator {
 
-    @Override
-    public final long getDiscover() {
-        final long prefix = creditCardPrefix.getDiscover();
+    public static final long generateDiscover() {
+        final long prefix = CreditCardPrefix.getDiscover();
         String number = null;
         final int length = String.valueOf(prefix).length();
         switch (length) {
@@ -33,25 +31,22 @@ public final class FakeCreditCardGenerator implements CreditCard {
 
     }
 
-    @Override
-    public final long getMasterCard() {
+    public static final long generateMasterCard() {
         final String number = RandomStringUtils.randomNumeric(13);
-        final long prefix = creditCardPrefix.getMasterCard();
+        final long prefix = CreditCardPrefix.getMasterCard();
         final long checksum = Luhn.getCheckDigit(prefix + number);
         return Long.parseLong(prefix + number + String.valueOf(checksum));
     }
 
-    @Override
-    public final long getVisa() {
+    public static final long generateVisa() {
         final String number = RandomStringUtils.randomNumeric(14);
-        final long prefix = creditCardPrefix.getVisa();
+        final long prefix = CreditCardPrefix.getVisa();
         final long checksum = Luhn.getCheckDigit(prefix + number);
         return Long.parseLong(prefix + number + String.valueOf(checksum));
     }
 
-    @Override
-    public final long getAmericanExpress() {
-        final long prefix = creditCardPrefix.getAmericanExpress();
+    public static final long generateAmericanExpress() {
+        final long prefix = CreditCardPrefix.getAmericanExpress();
         final String number = RandomStringUtils.randomNumeric(12);
         final long checksum = Luhn.getCheckDigit(prefix + number);
         return Long.parseLong(prefix + number + String.valueOf(checksum));

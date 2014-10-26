@@ -9,27 +9,23 @@ import static com.nycjv321.utilities.NumberUtilities.getRandom;
 /**
 * Created by Javier on 10/8/2014.
 */
-public class CreditCardPrefix implements CreditCard {
+public class CreditCardPrefix {
     private static Random random = new Random();
 
-    @Override
-    public long getDiscover() {
+    public static long getDiscover() {
         int[] prefixes = {6011, 65, getRandom(random, 622126, 622925), getRandom(random, 644, 649)};
         return prefixes[NumberUtilities.getRandom(random, 0, prefixes.length - 1)];
     }
 
-    @Override
-    public long getMasterCard() {
+    public static long getMasterCard() {
         return getRandom(random, 51, 55);
     }
 
-    @Override
-    public long getVisa() {
+    public static long getVisa() {
         return 4;
     }
 
-    @Override
-    public long getAmericanExpress() {
+    public static long getAmericanExpress() {
         int[] prefixes = {34, 37};
         return prefixes[NumberUtilities.getRandom(random, 0, prefixes.length - 1)];
     }
