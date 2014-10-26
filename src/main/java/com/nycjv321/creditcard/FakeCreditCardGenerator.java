@@ -53,4 +53,20 @@ public final class FakeCreditCardGenerator {
 
     }
 
+    /**
+     * Determines the credit card associated with the provided string.
+     * Return null if no credit card matches.
+     * @param creditCardAsString a string representing a credit card
+     * @return the credit card constant
+     */
+    public static CreditCard determineCard(String creditCardAsString) {
+        CreditCard[] creditCards = CreditCard.values();
+        for (int i = 0; i < creditCards.length; ++i) {
+            CreditCard creditCard = creditCards[i];
+            if (creditCardAsString.matches(creditCard.getRegex())) {
+                return creditCard;
+            }
+        }
+        return null;
+    }
 }
