@@ -23,7 +23,7 @@ import static javafx.geometry.Pos.CENTER;
  */
 public class FakeCreditCardGeneratorUI extends Application implements JavaFXUtilities {
     private TextField generatedCreditCard;
-    private TextField validateCreditCard;
+    private TextField validateCreditCardButton;
     private Label creditCardLabel;
 
     private final ImageView visaImageView = createImageView(createImage("/" + VISA + ".jpg"), 50, true);
@@ -31,6 +31,9 @@ public class FakeCreditCardGeneratorUI extends Application implements JavaFXUtil
     private final ImageView discoverImageView = createImageView(createImage("/" + DISCOVER + ".jpg"), 50, true);
     private final ImageView americanExpressImageView = createImageView(createImage("/" + AMERICAN_EXPRESS + ".png"), 50, true);
     private final ImageView masterCardImageView = createImageView(createImage("/" + MASTER_CARD + ".png"), 50, true);
+
+    private static final int MAX_CREDIT_CARD_LENGTH = CreditCard.getMaximumLength();
+    private static final int MIN_CREDIT_CARD_LENGTH = CreditCard.getMinimumLength();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -58,6 +61,7 @@ public class FakeCreditCardGeneratorUI extends Application implements JavaFXUtil
 
     /**
      * Create the GridPane responsible for allowing the user to generate credit cards
+     *
      * @return
      */
     private GridPane createGenerateGrid() {
@@ -96,41 +100,48 @@ public class FakeCreditCardGeneratorUI extends Application implements JavaFXUtil
 
     /**
      * Create the grid pane responsible for validating credit card strings
+     *
      * @return
      */
     private GridPane createValidateGrid() {
         GridPane validateGrid = createGrid();
-        validateCreditCard = createTextField(Pos.CENTER);
-        validateCreditCard.setOnKeyReleased(event ->
+        validateCreditCardButton = createTextField(Pos.CENTER);
+
+        setTextLimit(validateCreditCardButton, MAX_CREDIT_CARD_LENGTH);
+        validateCreditCardButton.setOnKeyReleased(event ->
         {
-            String creditCard = validateCreditCard.getText();
-            CreditCard creditCardType = FakeCreditCardGenerator.determineCard(creditCard);
-            if (creditCardType == null) {
-                creditCardLabel.setGraphic(failImageView);
-            } else {
-                switch (creditCardType) {
-                    case VISA:
-                        creditCardLabel.setGraphic(visaImageView);
-                        break;
-                    case DISCOVER:
-                        creditCardLabel.setGraphic(discoverImageView);
-                        break;
-                    case AMERICAN_EXPRESS:
-                        creditCardLabel.setGraphic(americanExpressImageView);
-                        break;
-                    case MASTER_CARD:
-                        creditCardLabel.setGraphic(masterCardImageView);
-                        break;
+            String creditCard = validateCreditCardButton.getText();
+            // Only check for the credit card if it meets our maximum and minimum lengths for predefined credit card types
+            if (creditCard.length() >= MIN_CREDIT_CARD_LENGTH &&
+                    creditCard.length() <= MAX_CREDIT_CARD_LENGTH) {
+                CreditCard creditCardType = FakeCreditCardGenerator.determineCard(creditCard);
+                if (creditCardType == null) {
+                    creditCardLabel.setGraphic(failImageView);
+                } else {
+                    switch (creditCardType) {
+                        case VISA:
+                            creditCardLabel.setGraphic(visaImageView);
+                            break;
+                        case DISCOVER:
+                            creditCardLabel.setGraphic(discoverImageView);
+                            break;
+                        case AMERICAN_EXPRESS:
+                            creditCardLabel.setGraphic(americanExpressImageView);
+                            break;
+                        case MASTER_CARD:
+                            creditCardLabel.setGraphic(masterCardImageView);
+                            break;
+                    }
                 }
             }
         });
         creditCardLabel = createLabel(100, 100, Pos.CENTER);
         validateGrid.add(creditCardLabel, 0, 0);
-        validateGrid.add(validateCreditCard, 1, 0);
+        validateGrid.add(validateCreditCardButton, 1, 0);
         return validateGrid;
     }
 
-        private GridPane createGrid() {
+    private GridPane createGrid() {
         GridPane grid = new GridPane();
         grid.setAlignment(CENTER);
         grid.setHgap(5);
