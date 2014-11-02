@@ -1,6 +1,6 @@
 package com.nycjv321.creditcard;
 
-import com.nycjv321.utilities.JavaFXUtilities;
+import com.nycjv321.utilities.FXUtilities;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,7 +21,7 @@ import static javafx.geometry.Pos.CENTER;
 /**
  * Created by Javier on 10/25/2014.
  */
-public class FakeCreditCardGeneratorUI extends Application implements JavaFXUtilities {
+public class FakeCreditCardGeneratorUI extends Application implements FXUtilities {
     private TextField generatedCreditCard;
     private TextField validateCreditCardButton;
     private Label creditCardLabel;
