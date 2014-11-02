@@ -13,6 +13,10 @@ Screenshot
 Changelog
 ----
 
+0.05
+
+  - Added logo. Content is derived from https://openclipart.org/detail/182038/credit-card-front-by-jmlevick-182038
+
 0.04
 
   - Added UI

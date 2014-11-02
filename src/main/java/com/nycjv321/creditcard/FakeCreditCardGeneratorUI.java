@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -46,6 +47,11 @@ public class FakeCreditCardGeneratorUI extends Application implements FXUtilitie
         tabPane.getTabs().add(validateTab);
 
         tabPane.setPrefSize(320, 90);
+
+        primaryStage.getIcons().add(
+                new Image(getClass().getResourceAsStream("/logo.png")));
+
+
         GridPane grid = createGrid();
         grid.add(tabPane, 0, 0);
         Scene scene = new Scene(grid, 325, 100);
@@ -139,15 +145,6 @@ public class FakeCreditCardGeneratorUI extends Application implements FXUtilitie
         validateGrid.add(creditCardLabel, 0, 0);
         validateGrid.add(validateCreditCardButton, 1, 0);
         return validateGrid;
-    }
-
-    private GridPane createGrid() {
-        GridPane grid = new GridPane();
-        grid.setAlignment(CENTER);
-        grid.setHgap(5);
-        grid.setVgap(5);
-        grid.setPadding(new Insets(5, 5, 5, 5));
-        return grid;
     }
 
 }
